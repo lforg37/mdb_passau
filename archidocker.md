@@ -7,15 +7,18 @@
 
 ## Client Web :
 ### Conteneurs :
-* Un conteneur nginx avec le code de l'interface client 
+* Un conteneur nginx proxy et serveur static sur les images
+* Un conteneur nodejs pour l'interaction client
 
 ### Connexion avec les volumes :
-* Connexion avec le volume de stockage des images core10k en lecture
-* Connexion avec le volume de stockage des fichiers temporaires en écriture
+* Connexion avec le volume de stockage des images core10k en lecture (pour le conteneur nginx)
+* Connexion avec le volume de stockage des fichiers temporaires en écriture (pour le conteneur nodejs)
 
 ### Ports et liens
-* Port 80 ouvert pour intercepter les requêtes http client
+* Port 80 ouvert pour intercepter les requêtes http client (proxy nginx)
 * Lien avec le conteneur de BDD pour requêter les noms d'images proches
+* Port ouvert sur l'app node
+* Lien entre le proxy et l'app node
 
 ## BDD :
 ### Conteneurs :
