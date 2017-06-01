@@ -1,0 +1,9 @@
+[submodule "mdb_client"]
+	path = mdb_client
+	url = git@github.com:lforg37/mdb_client.git
+[submodule "mdb_httpproxy"]
+	path = mdb_httpproxy
+	url = git@github.com:lforg37/mdb_httpproxy.git
+[submodule "mdb_lire"]
+	path = mdb_lire
+	url = git@github.com:lforg37/mdb_lire.git

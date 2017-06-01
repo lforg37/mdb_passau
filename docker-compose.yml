@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+        proxy:
+                build:
+                        context: ./mdb_httpproxy
+                networks:
+                        - dma
+                ports:
+                        - "80:80"
+                volumes:
+                        - corel_picts:/data/images/:ro
+        webserv:
+                build:
+                        context: ./mdb_client
+                networks:
+                        dma: 
+                                aliases: 
+                                        - "httpserv"
+                        back:
+                expose:
+                        - "8080"
+                volumes:
+                        - user_picts:/tmp/images/
+
+        lire:
+                build:
+                        context: ./mdb_lire
+                networks:
+                        back: 
+                                aliases:
+                                        - "lireserv"
+networks:
+        dma:
+        back:
+
+volumes:
+        corel_picts:
+                external: true
+        user_picts:
