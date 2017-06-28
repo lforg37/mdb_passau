@@ -7,3 +7,6 @@
 [submodule "mdb_lire"]
 	path = mdb_lire
 	url = git@github.com:lforg37/mdb_lire.git
+[submodule "mdb_corel10k"]
+	path = mdb_corel10k
+	url = git@github.com:lforg37/mdb_corel10k.git
