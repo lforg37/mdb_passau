@@ -12,7 +12,7 @@ services:
                         - corel-10k:/data/images/:ro
                 depends_on:
                         - lire
-                        - corel_10k
+                        - corel-10k
                         - webserv
         webserv:
                 build:
@@ -37,9 +37,11 @@ services:
                 build:
                         context: ./mdb_corel10k
                 volumes:
-                        - corel-10k: /local/corel-10k
+                        - corel-10k:/local/corel-10k
                 depends_on:
                         - lire
+                networks:
+                        back:
 networks:
         dma:
         back:
