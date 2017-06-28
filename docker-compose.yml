@@ -1,24 +1,23 @@
-version: '2'
+version: '3'
 
 services:
-        proxy:
+        nginx:
                 build:
                         context: ./mdb_httpproxy
                 networks:
-                        - dma
+                        dmz:
                 ports:
                         - "80:80"
                 volumes:
-                        - corel-10k:/data/images/:ro
+                        - corel-10k:/data/corel_images/:ro
                 depends_on:
-                        - lire
-                        - corel10k_fetcher
                         - webserv
+                        - corel10k_fetcher
         webserv:
                 build:
                         context: ./mdb_client
                 networks:
-                        dma: 
+                        dmz: 
                                 aliases: 
                                         - "httpserv"
                         back:
@@ -43,7 +42,7 @@ services:
                 networks:
                         back:
 networks:
-        dma:
+        dmz:
         back:
 
 volumes:
