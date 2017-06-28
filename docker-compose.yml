@@ -12,7 +12,7 @@ services:
                         - corel-10k:/data/images/:ro
                 depends_on:
                         - lire
-                        - corel-10k
+                        - corel10k_fetcher
                         - webserv
         webserv:
                 build:
@@ -33,7 +33,7 @@ services:
                         back: 
                                 aliases:
                                         - "lireserv"
-        corel-10k:
+        corel10k_fetcher:
                 build:
                         context: ./mdb_corel10k
                 volumes:
