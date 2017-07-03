@@ -27,11 +27,15 @@ services:
                         - user_picts:/app/upload/
 
         lire:
-                image: dermotte/liresolr:latest
+                build:
+                        context: ./api-lire-rest
                 networks:
                         back: 
                                 aliases:
                                         - "lireserv"
+                volumes:
+                        - corel-10k:/data/corel-10k
+                        - user_picts:/data_user_picts
                                           #        corel10k_fetcher:
                                           #                build:
                                           #                        context: ./mdb_corel10k
