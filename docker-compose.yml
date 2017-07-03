@@ -12,7 +12,7 @@ services:
                         - corel-10k:/data/corel_images/:ro
                 depends_on:
                         - webserv
-                        - corel10k_fetcher
+                          #                        - corel10k_fetcher
         webserv:
                 build:
                         context: ./mdb_client
@@ -24,7 +24,7 @@ services:
                 expose:
                         - "8080"
                 volumes:
-                        - user_picts:/tmp/images/
+                        - user_picts:/app/upload/
 
         lire:
                 image: dermotte/liresolr:latest
@@ -32,15 +32,15 @@ services:
                         back: 
                                 aliases:
                                         - "lireserv"
-        corel10k_fetcher:
-                build:
-                        context: ./mdb_corel10k
-                volumes:
-                        - corel-10k:/local/corel-10k
-                depends_on:
-                        - lire
-                networks:
-                        back:
+                                          #        corel10k_fetcher:
+                                          #                build:
+                                          #                        context: ./mdb_corel10k
+                                          #                volumes:
+                                          #                        - corel-10k:/local/corel-10k
+                                          #                depends_on:
+                                          #                        - lire
+                                          #                networks:
+                                          #                        back:
 networks:
         dmz:
         back:
