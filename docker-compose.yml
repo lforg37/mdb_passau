@@ -28,11 +28,13 @@ services:
 
         lire:
                 build:
-                        context: ./api-lire-rest
+                        context: ./mdb_lireapi
                 networks:
                         back: 
                                 aliases:
                                         - "lireserv"
+                expose:
+                        - "8080"
                 volumes:
                         - corel-10k:/data/corel-10k
                         - user_picts:/data_user_picts
