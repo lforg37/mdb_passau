@@ -13,3 +13,6 @@
 [submodule "api-lire-rest"]
 	path = api-lire-rest
 	url = https://github.com/Brindesable/api-lire-rest
+[submodule "mdb_lireapi"]
+	path = mdb_lireapi
+	url = git@github.com:lforg37/mdb_lireapi.git
