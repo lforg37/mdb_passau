@@ -2,8 +2,7 @@ version: '3'
 
 services:
         nginx:
-                build:
-                        context: ./mdb_httpproxy
+                image: lfor37/mdb_httpproxy 
                 networks:
                         dmz:
                 ports:
@@ -12,10 +11,9 @@ services:
                         - corel-10k:/data/corel_images/:ro
                 depends_on:
                         - webserv
-                          #                        - corel10k_fetcher
+                        - corel10k_fetcher
         webserv:
-                build:
-                        context: ./mdb_client
+                image: lforg37/mdb_client
                 networks:
                         dmz: 
                                 aliases: 
@@ -25,10 +23,25 @@ services:
                         - "8080"
                 volumes:
                         - user_picts:/app/upload/
+                depends_on:
+                        - database
 
-        lire:
+        database:
                 build:
-                        context: ./mdb_lireapi
+                        context: ./mdb_database
+                expose: 
+                        - "1521"
+                volumes:
+                        - corel10k:/corel-10k/
+                network:
+                        back:
+                                aliases:
+                                        - "oraclemdb"
+                depends_on:
+                        - lire
+                        - corel10k_fetcher
+        lire:
+                image: lforg37/mdb_lireapi
                 networks:
                         back: 
                                 aliases:
@@ -36,17 +49,15 @@ services:
                 expose:
                         - "8080"
                 volumes:
-                        - corel-10k:/data/corel-10k
-                        - user_picts:/data_user_picts
-                                          #        corel10k_fetcher:
-                                          #                build:
-                                          #                        context: ./mdb_corel10k
-                                          #                volumes:
-                                          #                        - corel-10k:/local/corel-10k
-                                          #                depends_on:
-                                          #                        - lire
-                                          #                networks:
-                                          #                        back:
+                        - corel-10k:/corel-10k
+                        - user_picts:/app/upload
+                depends_on:
+                        - corel10k_fetcher
+        corel10k_fetcher:
+                image: lforg37/mdb_corel10k
+                context: ./mdb_corel10k
+                volumes:
+                        - corel-10k:/install
 networks:
         dmz:
         back:
