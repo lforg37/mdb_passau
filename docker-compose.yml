@@ -2,7 +2,7 @@ version: '3'
 
 services:
         nginx:
-                image: lfor37/mdb_httpproxy 
+                image: lforg37/mdb_httpproxy 
                 networks:
                         dmz:
                 ports:
@@ -13,7 +13,9 @@ services:
                         - webserv
                         - corel10k_fetcher
         webserv:
-                image: lforg37/mdb_client
+                #image: lforg37/mdb_client
+                build:
+                        context: ./mdb_client
                 networks:
                         dmz: 
                                 aliases: 
@@ -32,8 +34,8 @@ services:
                 expose: 
                         - "1521"
                 volumes:
-                        - corel10k:/corel-10k/
-                network:
+                        - corel-10k:/corel-10k/
+                networks:
                         back:
                                 aliases:
                                         - "oraclemdb"
@@ -41,7 +43,9 @@ services:
                         - lire
                         - corel10k_fetcher
         lire:
-                image: lforg37/mdb_lireapi
+                #                image: lforg37/mdb_lireapi
+                build:
+                        context: ./mdb_lireapi
                 networks:
                         back: 
                                 aliases:
@@ -55,7 +59,6 @@ services:
                         - corel10k_fetcher
         corel10k_fetcher:
                 image: lforg37/mdb_corel10k
-                context: ./mdb_corel10k
                 volumes:
                         - corel-10k:/install
 networks:
