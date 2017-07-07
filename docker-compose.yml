@@ -8,12 +8,11 @@ services:
                 ports:
                         - "80:80"
                 volumes:
-                        - corel-10k:/data/corel_images/:ro
+                        - corel-10k:/data/corel-10k/:ro
                 depends_on:
                         - webserv
                         - corel10k_fetcher
         webserv:
-                #image: lforg37/mdb_client
                 build:
                         context: ./mdb_client
                 networks:
@@ -43,9 +42,7 @@ services:
                         - lire
                         - corel10k_fetcher
         lire:
-                #                image: lforg37/mdb_lireapi
-                build:
-                        context: ./mdb_lireapi
+                image: lforg37/mdb_lireapi
                 networks:
                         back: 
                                 aliases:
@@ -54,7 +51,7 @@ services:
                         - "8080"
                 volumes:
                         - corel-10k:/corel-10k
-                        - user_picts:/app/upload
+                        - user_picts:/app/upload/
                 depends_on:
                         - corel10k_fetcher
         corel10k_fetcher:
