@@ -42,6 +42,7 @@ services:
                 depends_on:
                         - lire
                         - corel10k_fetcher
+                privileged: true
         lire:
                 image: lforg37/mdb_lireapi
                 networks:
