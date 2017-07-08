@@ -3,9 +3,10 @@
 ## Presentation
 
 ## Requirements
-In order to run this project you need docker and docker-compose installed.
-You also need a docker image with oracle 11g installed in it named oracle11g-installed. 
-We recommand to use the base image from [jaspeen](https://github.com/jaspeen/oracle-11g "Jaspeen oracle-11g github")
+In order to run this project you need : 
+  * docker and docker-compose installed.
+  * a docker image with oracle 11g installed in it named oracle11g-installed. (We recommand to use the base image from [jaspeen](https://github.com/jaspeen/oracle-11g "Jaspeen oracle-11g github"))
+  * To get the Oracle instant-client rpm for the client container : download `oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm` for `linux x86_64` from [this page](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html) and put it at the root of the mdb_client repository which should appear once the submodule initiated and updated.
 
 ## Installation
 
