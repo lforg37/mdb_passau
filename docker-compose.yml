@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-        nginx:
-                image: lforg37/mdb_httpproxy 
-                networks:
-                        dmz:
-                ports:
-                        - "80:80"
-                volumes:
-                        - corel-10k:/data/corel-10k/:ro
-                depends_on:
-                        - webserv
-                        - corel10k_fetcher
+        #        nginx:
+        #                image: lforg37/mdb_httpproxy 
+        #                networks:
+        #                        dmz:
+        #                ports:
+        #                        - "25000:80"
+        #                volumes:
+        #                        - corel-10k:/data/corel-10k/:ro
+        #                depends_on:
+        #                        - webserv
+        #                        - corel10k_fetcher
         webserv:
                 build:
                         context: ./mdb_client
@@ -20,10 +20,11 @@ services:
                                 aliases: 
                                         - "httpserv"
                         back:
-                expose:
-                        - "8080"
+                ports:
+                        - "8080:8080"
                 volumes:
                         - user_picts:/app/upload/
+                        - corel-10k:/app/corel-10k/
                 depends_on:
                         - database
 
