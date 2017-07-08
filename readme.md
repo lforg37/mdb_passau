@@ -12,7 +12,7 @@ In order to run this project you need :
 
 Clone this repository and the submodules :
 ```
-git clone git@github.com:lforg37/mdb_passau.git
+git clone https://github.com/lforg37/mdb_passau.git
 cd mdb_passau
 git submodule init
 git submodule update
