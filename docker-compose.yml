@@ -21,7 +21,7 @@ services:
                                         - "httpserv"
                         back:
                 ports:
-                        - "8080:8080"
+                        - "4242:8080"
                 volumes:
                         - user_picts:/app/upload/
                         - corel-10k:/app/corel-10k/
