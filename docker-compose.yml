@@ -43,6 +43,7 @@ services:
                         - lire
                         - corel10k_fetcher
                 privileged: true
+                hostname: database
         lire:
                 image: lforg37/mdb_lireapi
                 networks:
